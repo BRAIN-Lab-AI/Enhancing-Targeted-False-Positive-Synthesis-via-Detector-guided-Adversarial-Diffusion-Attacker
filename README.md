@@ -12,8 +12,6 @@ Deep learning models, particularly Convolutional Neural Networks (CNNs) and Visi
 To address this challenge, researchers have proposed methods to improve adversarial robustness without significantly compromising classification accuracy. A recent approach, Self-Ensembling Vision Transformer (SEViT), leverages intermediate block features within a ViT to mitigate the impact of adversarial perturbations and enhance robustness in medical imaging tasks. By training multiple classifiers on early transformer block outputs and combining their predictions with the final classifier, SEViT improves resilience and enables effective adversarial sample detection.
 
 
-
-
 ## Problem Statement
 Medical image classifiers based on Vision Transformers are vulnerable to adversarial attacks, which can severely reduce classification accuracy. Existing adversarial defense strategies, such as adversarial training or input preprocessing, often introduce high computational cost or lead to reduced accuracy on clean data. Therefore, there is a critical need for lightweight, effective, and generalizable defense strategies that improve robustness while maintaining acceptable performance on clean medical images.
 
@@ -25,9 +23,16 @@ Medical image classifiers based on Vision Transformers are vulnerable to adversa
 
 
 ## What is the paper trying to do, and what are you planning to do?
-Write 1-2 technical paragraphs (feel free to add images if you would like).
+The SEViT (Self-Ensembling Vision Transformer) paper proposed Intermediate classifiers on ViT blocks to capture more robust patch-token features, combining predictions with the final classifier. Ensemble prediction fusion, combining intermediate and final classifiers to improve resilience and adversarial robustness in medical datasets. SEViT detects PGD, BIM, AutoPGD and C&W attacks. Adversarial detection using  Kullback-Leibler divergence consistency checks across classifier predictions. 
+This approach improves robustness against strong adversarial attacks while maintaining reasonable clean accuracy.
 
+This project will build upon SEViT with an exploration of the following enhancements:
+- Varying the number of intermediate classifiers to analyze the robustness–accuracy tradeoff.
+- Testing against additional adversarial attacks for more diverse evaluation.
+- Evaluating clean accuracy, adversarial accuracy, and adversarial detection rate.
+- Exploring simpler adversarial detection metrics.
 
+  
 # THE FOLLOWING IS SUPPOSED TO BE DONE LATER
 
 ### Project Documents
