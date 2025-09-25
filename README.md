@@ -13,7 +13,8 @@ To address this challenge, researchers have proposed methods to improve adversar
 
 
 ## Problem Statement
-Write 1-2 technical paragraphs (feel free to add images if you would like).
+Medical image classifiers based on Vision Transformers are vulnerable to adversarial attacks, which can severely reduce classification accuracy. Existing adversarial defense strategies, such as adversarial training or input preprocessing, often introduce high computational cost or lead to reduced accuracy on clean data. Therefore, there is a critical need for lightweight, effective, and generalizable defense strategies that improve robustness while maintaining acceptable performance on clean medical images.
+
 
 ## Application Area and Project Domain
 Write 1-2 technical paragraphs (feel free to add images if you would like).
