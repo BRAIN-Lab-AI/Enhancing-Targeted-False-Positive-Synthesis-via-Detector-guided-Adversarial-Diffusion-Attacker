@@ -1,4 +1,4 @@
-# Enhancing-Adversarial-Robustness-of-Self-Ensembling-Vision-Transformers-for-Healthcare
+![ViT](https://github.com/user-attachments/assets/73764837-a38b-46ce-a043-95bee2e81a65)# Enhancing-Adversarial-Robustness-of-Self-Ensembling-Vision-Transformers-for-Healthcare
 
 ## Project Metadata
 ### Authors
@@ -12,12 +12,17 @@ Deep learning models, particularly Convolutional Neural Networks (CNNs) and Visi
 To address this challenge, researchers have proposed methods to improve adversarial robustness without significantly compromising classification accuracy. A recent approach, Self-Ensembling Vision Transformer (SEViT), leverages intermediate block features within a ViT to mitigate the impact of adversarial perturbations and enhance robustness in medical imaging tasks. By training multiple classifiers on early transformer block outputs and combining their predictions with the final classifier, SEViT improves resilience and enables effective adversarial sample detection.
 
 
+
+
 ## Problem Statement
 Medical image classifiers based on Vision Transformers are vulnerable to adversarial attacks, which can severely reduce classification accuracy. Existing adversarial defense strategies, such as adversarial training or input preprocessing, often introduce high computational cost or lead to reduced accuracy on clean data. Therefore, there is a critical need for lightweight, effective, and generalizable defense strategies that improve robustness while maintaining acceptable performance on clean medical images.
 
 
 ## Application Area and Project Domain
-Write 1-2 technical paragraphs (feel free to add images if you would like).
+**Application Area:** Medical Image classification with robustness against adversarial attacks, with specific focus on disease classification tasks (e.g., tuberculosis detection from chest X-rays, diabetic retinopathy detection from retinal images).
+
+**Project Domain:** Computer Vision, Deep Learning Security, Adversarial Machine Learning. Subdomain of Robust Medical Image Classification under Adversarial Perturbations.
+
 
 ## What is the paper trying to do, and what are you planning to do?
 Write 1-2 technical paragraphs (feel free to add images if you would like).
