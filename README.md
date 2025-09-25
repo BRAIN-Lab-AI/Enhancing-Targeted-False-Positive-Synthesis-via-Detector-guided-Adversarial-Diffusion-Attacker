@@ -2,12 +2,15 @@
 
 ## Project Metadata
 ### Authors
-- **Team:** Name1, Namw2
+- **Team:** Dalal Aldowaihi
 - **Supervisor Name:** Dr. Muzammil Behzad
-- **Affiliations:** SABIC, ARAMCO and KFUPM (write your institution name, and/or KFUPM)
+- **Affiliations:** IAU and KFUPM 
 
 ## Introduction
-Write 1-2 technical paragraphs (feel free to add images if you would like).
+Deep learning models, particularly Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs), have achieved remarkable success in medical image classification. However, despite their impressive performance, these models remain highly vulnerable to adversarial attacks, small imperceptible perturbations that can cause misclassification. Such subtle modifications to input images can mislead a model’s predictions, raising concerns about the robustness, reliability, and trustworthiness of AI-driven diagnostic systems.
+
+To address this challenge, researchers have proposed methods to improve adversarial robustness without significantly compromising classification accuracy. A recent approach, Self-Ensembling Vision Transformer (SEViT), leverages intermediate block features within a ViT to mitigate the impact of adversarial perturbations and enhance robustness in medical imaging tasks. By training multiple classifiers on early transformer block outputs and combining their predictions with the final classifier, SEViT improves resilience and enables effective adversarial sample detection.
+
 
 ## Problem Statement
 Write 1-2 technical paragraphs (feel free to add images if you would like).
