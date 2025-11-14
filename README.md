@@ -1,4 +1,4 @@
-![ViT](https://github.com/user-attachments/assets/73764837-a38b-46ce-a043-95bee2e81a65)# Enhancing-Adversarial-Robustness-of-Self-Ensembling-Vision-Transformers-for-Healthcare
+![ViT](https://github.com/user-attachments/assets/73764837-a38b-46ce-a043-95bee2e81a65)# Targeted False Positive Synthesis via Detector-guided Adversarial Diffusion Attacker for Robust Polyp Detection
 
 ## Project Metadata
 ### Authors
