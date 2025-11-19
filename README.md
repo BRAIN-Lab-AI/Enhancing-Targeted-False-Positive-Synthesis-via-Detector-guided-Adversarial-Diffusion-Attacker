@@ -13,9 +13,8 @@ To address this challenge, researchers have proposed methods to improve adversar
 
 
 ## Problem Statement
-Polyp detection models are often sensitive to complex colon backgrounds—such as folds, specular highlights, shadows, and circular lumen structures—which can resemble real polyps.  
+Polyp detection models are often sensitive to complex colon backgrounds—such as folds, specular highlights, shadows, and circular lumen structures, which can resemble real polyps.  
 This causes **high false-positive rates**, leading to:
-
 - Unnecessary alerts  
 - Interrupted clinical workflow  
 - Increased cognitive load for doctors  
