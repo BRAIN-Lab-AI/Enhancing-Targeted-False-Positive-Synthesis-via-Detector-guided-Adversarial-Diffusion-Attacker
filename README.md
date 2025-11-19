@@ -13,24 +13,36 @@ To address this challenge, researchers have proposed methods to improve adversar
 
 
 ## Problem Statement
-Medical image classifiers based on Vision Transformers are vulnerable to adversarial attacks, which can severely reduce classification accuracy. Existing adversarial defense strategies, such as adversarial training or input preprocessing, often introduce high computational cost or lead to reduced accuracy on clean data. Therefore, there is a critical need for lightweight, effective, and generalizable defense strategies that improve robustness while maintaining acceptable performance on clean medical images.
+Polyp detection models are often sensitive to complex colon backgrounds—such as folds, specular highlights, shadows, and circular lumen structures—which can resemble real polyps.  
+This causes **high false-positive rates**, leading to:
+
+- Unnecessary alerts  
+- Interrupted clinical workflow  
+- Increased cognitive load for doctors  
+- Reduced trust in AI systems  
+
+Existing synthetic data techniques mainly generate **positive samples** (polyp images), but **almost none** produce *challenging negative samples* that intentionally mimic false positives.
 
 
 ## Application Area and Project Domain
 **Application Area:** Medical Image classification with robustness against adversarial attacks, with specific focus on disease classification tasks (e.g., tuberculosis detection from chest X-rays, diabetic retinopathy detection from retinal images).
 
-**Project Domain:** Computer Vision, Deep Learning Security, Adversarial Machine Learning. Subdomain of Robust Medical Image Classification under Adversarial Perturbations.
+**Project Domain:** Computer Vision, Neural Networks, Deep Learning, Deep Learning Security, Adversarial Machine Learning. Subdomain of Robust Medical Image Classification under Adversarial Perturbations, Model Enhancement, Stable Diffusion, Adversarial diffusion framework, Data synthesis, Colorectal polyp detection
+
 
 
 ## What is the paper trying to do, and what are you planning to do?
-The SEViT (Self-Ensembling Vision Transformer) paper proposed Intermediate classifiers on ViT blocks to capture more robust patch-token features, combining predictions with the final classifier. Ensemble prediction fusion, combining intermediate and final classifiers to improve resilience and adversarial robustness in medical datasets. SEViT detects PGD, BIM, AutoPGD and C&W attacks. Adversarial detection using  Kullback-Leibler divergence consistency checks across classifier predictions. 
-This approach improves robustness against strong adversarial attacks while maintaining reasonable clean accuracy.
-
-This project will build upon SEViT with an exploration of the following enhancements:
-- Varying the number of intermediate classifiers to analyze the robustness–accuracy tradeoff.
-- Testing against additional adversarial attacks for more diverse evaluation.
-- Evaluating clean accuracy, adversarial accuracy, and adversarial detection rate.
-- Exploring simpler adversarial detection metrics.
+DADA is a Detector-Guided Adversarial Diffusion Attacker, a novel framework designed to generate highly realistic false-positive examples for improving polyp detection models. The method works in three main steps:
+**1. Background-Only Diffusion Model (BG-De)**
+A modified DDPM is trained to learn only background patterns from colonoscopy images. Polyp regions are masked out during training, ensuring the model does not accidentally learn true polyp shapes.
+**2. Adversarial Guidance (DADA)**
+During image generation, adversarial gradients from a pre-trained detector (YOLO/DETR) are injected into the diffusion process.
+These gradients guide the synthetic image toward patterns that fool the detector, intentionally creating challenging false positives.
+**3. Local Inpainting for Realism**
+Only a specific region of the image is modified, while the rest remains unchanged. This produces high-value, anatomically consistent false-positive samples.
+The generated images look realistic and polyp-like but are actually background artifacts. Training detectors with these samples significantly reduces the number of false positives.
+**Results**
+Across public and private datasets, the method improves F1-score by +2.6% to +2.7%, outperforming adversarial attacks and other inpainting baselines.
 
   
 # THE FOLLOWING IS SUPPOSED TO BE DONE LATER
