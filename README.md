@@ -7,9 +7,7 @@
 - **Affiliations:** IAU and KFUPM 
 
 ## Introduction
-Deep learning models, particularly Convolutional Neural Networks (CNNs) and Vision Transformers (ViTs), have achieved remarkable success in medical image classification. However, despite their impressive performance, these models remain highly vulnerable to adversarial attacks, small imperceptible perturbations that can cause misclassification. Such subtle modifications to input images can mislead a model’s predictions, raising concerns about the robustness, reliability, and trustworthiness of AI-driven diagnostic systems.
-
-To address this challenge, researchers have proposed methods to improve adversarial robustness without significantly compromising classification accuracy. A recent approach, Self-Ensembling Vision Transformer (SEViT), leverages intermediate block features within a ViT to mitigate the impact of adversarial perturbations and enhance robustness in medical imaging tasks. By training multiple classifiers on early transformer block outputs and combining their predictions with the final classifier, SEViT improves resilience and enables effective adversarial sample detection.
+To tackle the challenge of polyp detectors easy to produce false positive prediction, this work firstly (to the best of our knowledge) to apply adversarial diffusion framwork to generate high-value negative samples (e.g., polyp-like interferences, light spots, circular lumens and and other background objects). The core module is Detector-guided Adversarial Diffusion Attacker (DADA), which perturbs the denoising process to generate challenging false positives capable of confusing a well-trained polyp detector, thereby guiding the synthesis of high-value negative samples. The negative samples synthesized by our method can improve the performance of the detector more than other data data synthesis methods.
 
 
 ## Problem Statement
@@ -24,7 +22,7 @@ Existing synthetic data techniques mainly generate **positive samples** (polyp i
 
 
 ## Application Area and Project Domain
-**Application Area:** Medical Image classification with robustness against adversarial attacks, with specific focus on disease classification tasks (e.g., tuberculosis detection from chest X-rays, diabetic retinopathy detection from retinal images).
+**Application Area:** Medical Image classification with robustness against adversarial attacks
 
 **Project Domain:** Computer Vision, Neural Networks, Deep Learning, Deep Learning Security, Adversarial Machine Learning. Subdomain of Robust Medical Image Classification under Adversarial Perturbations, Model Enhancement, Stable Diffusion, Adversarial diffusion framework, Data synthesis, Colorectal polyp detection
 
@@ -51,25 +49,21 @@ Across public and private datasets, the method improves F1-score by +2.6% to +2.
 - **Report:** [Project Report](/report.pdf)
 
 ### Reference Paper
-- [High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752)
+- [Targeted False Positive Synthesis via Detector-guided Adversarial Diffusion Attacker for Robust Polyp Detection](https://arxiv.org/abs/2506.18134)
 
 ### Reference Dataset
-- [LAION-5B Dataset](https://laion.ai/blog/laion-5b/)
+- [Kvasir Dataset](https://datasets.simula.no/kvasir/)
+- Dataset: ETIS-Larib Polyp DB (https://service.tib.eu/ldmservice/dataset/etis-larib-polyp-db)
 
 
 ## Project Technicalities
 
 ### Terminologies
 - **Diffusion Model:** A generative model that progressively transforms random noise into coherent data.
-- **Latent Space:** A compressed, abstract representation of data where complex features are captured.
 - **UNet Architecture:** A neural network with an encoder-decoder structure featuring skip connections for better feature preservation.
-- **Text Encoder:** A model that converts text into numerical embeddings for downstream tasks.
 - **Perceptual Loss:** A loss function that measures high-level differences between images, emphasizing perceptual similarity.
-- **Tokenization:** The process of breaking down text into smaller units (tokens) for processing.
 - **Noise Vector:** A randomly generated vector used to initialize the diffusion process in generative models.
-- **Decoder:** A network component that transforms latent representations back into image space.
 - **Iterative Refinement:** The process of gradually improving the quality of generated data through multiple steps.
-- **Conditional Generation:** The process where outputs are generated based on auxiliary inputs, such as textual descriptions.
 
 ### Problem Statements
 - **Problem 1:** Achieving high-resolution and detailed images using conventional diffusion models remains challenging.
