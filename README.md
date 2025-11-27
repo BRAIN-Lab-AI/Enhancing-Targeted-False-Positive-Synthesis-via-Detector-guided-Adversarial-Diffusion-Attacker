@@ -128,13 +128,15 @@ The workflow of the Enhanced Stable Diffusion model is designed to generate  hig
 ## How to Run the Code
 
 1. **Clone the Repository:**
+   
     ```bash
     git clone https://github.com/BRAIN-Lab-AI/Enhancing-Targeted-False-Positive-Synthesis-via-Detector-guided-Adversarial-Diffusion-Attacker.git
     cd Enhancing-Targeted-False-Positive-Synthesis-via-Detector-guided-Adversarial-Diffusion-Attacker.git
     ```
 
-2. **Set Up the Environment:**
+3. **Set Up the Environment:**
     Create a virtual environment and install the required dependencies.
+   
     ```bash
     python3 -m venv venv
     source venv/bin/activate  # On Windows use: venv\Scripts\activate
@@ -146,6 +148,7 @@ We provide well-trained BG-De weights based on the public Kvasir dataset, which 
 Additionally, we also offer YOLOv5l weights trained on the public Kvasir dataset, which can be downloaded from this [link](https://drive.google.com/file/d/1hfs5trwjaZXrCVflEZstlHSiioMQJEp4/view). Please place the weights in the Detection_model folder.
 
 After completing the above steps, you can generate negative samples by simply running Main.py:
+
 ```bash
     python Main.py
     ```
