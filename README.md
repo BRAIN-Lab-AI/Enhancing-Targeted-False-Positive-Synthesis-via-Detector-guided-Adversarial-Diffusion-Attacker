@@ -31,12 +31,15 @@ This work introduces a solution: high-value false positive synthesis.
 
 ## What is the paper trying to do, and what are you planning to do?
 DADA is a Detector-Guided Adversarial Diffusion Attacker, a novel framework designed to generate highly realistic false-positive examples for improving polyp detection models. The method works in three main steps:
+
 **1. Background-Only Diffusion Model (BG-De)**
 A modified DDPM is trained to learn only background patterns from colonoscopy images. Polyp regions are masked out during training, ensuring the model does not accidentally learn true polyp shapes.
+
 **2. Adversarial Guidance (DADA)**
 During image generation, adversarial gradients from a pre-trained detector (YOLO/DETR) are injected into the diffusion process.
 These gradients guide the synthetic image toward patterns that fool the detector, intentionally creating challenging false positives.
 **3. Local Inpainting for Realism**
+
 Only a specific region of the image is modified, while the rest remains unchanged. This produces high-value, anatomically consistent false-positive samples.
 The generated images look realistic and polyp-like but are actually background artifacts. Training detectors with these samples significantly reduces the number of false positives.
 **Results**
@@ -46,8 +49,6 @@ This repository includes several research-level enhancements:
 **Region-Adaptive Perturbation α ** Instead of using the same adversarial factor (α) everywhere, the new version: Uses higher α in high-risk FP regions (folds, circular lumen), Uses lower α in smooth regions, Prevents over-perturbation and Increases biological plausibility
 **Enhanced BG-De Training Stability ** OneCycleLR
   
-# THE FOLLOWING IS SUPPOSED TO BE DONE LATER
-
 ### Project Documents
 - **Presentation:** [Project Presentation](/presentation.pptx)
 - **Report:** [Project Report](/report.pdf)
@@ -95,7 +96,6 @@ This repository provides an implementation of the enhanced stable diffusion mode
 - **`model.py`**: Contains the modified UNet architecture and other model components.
 - **`train.py`**: Script to handle the training process with configurable parameters.
 - **`utils.py`**: Utility functions for data processing, augmentation, and metric evaluations.
-- **`inference.py`**: Script for generating images using the trained model.
 
 ## Model Workflow
 The workflow of the Enhanced Stable Diffusion model is designed to translate textual descriptions into high-quality artistic images through a multi-step diffusion process:
