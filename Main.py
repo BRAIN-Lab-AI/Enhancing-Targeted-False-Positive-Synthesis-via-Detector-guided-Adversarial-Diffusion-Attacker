@@ -18,8 +18,8 @@ def main(model_config = None):
 
     modelConfig = {
         "state": "eval", # or eval
-        "epoch": 50,
-        "batch_size": 1,
+        "epoch": 100,
+        "batch_size": 8,
         "T": 1000,
         "channel": 64,
         "channel_mult": [1, 2, 3, 4, 4],
@@ -56,3 +56,4 @@ def main(model_config = None):
 
 if __name__ == '__main__':
     main()
+
