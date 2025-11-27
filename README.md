@@ -1,4 +1,9 @@
 ![ViT](https://github.com/user-attachments/assets/73764837-a38b-46ce-a043-95bee2e81a65)# Targeted False Positive Synthesis via Detector-guided Adversarial Diffusion Attacker for Robust Polyp Detection
+╔══════════════════════════════════════════════════════════════════════╗
+║                     Enhanced DADA Framework (2025)                   ║
+║      Detector-Guided Adversarial Diffusion for Polyp Detection       ║
+║             High-Value False-Positive Synthesis Pipeline             ║
+╚══════════════════════════════════════════════════════════════════════╝
 
 ## Project Metadata
 ### Authors
@@ -12,7 +17,7 @@ Deep polyp detectors often produce false positives due to confusing background s
 This project presents an Enhanced DADA Framework, extending the original: **Detector-Guided Adversarial Diffusion Attacker (DADA)**,
 with additional contributions such as: Region-adaptive perturbation α, Enhanced BG-De training stability and Better FP synthesis quality
 
-The goal is to generate high-value negative samples—synthetic background images that intentionally look like polyps—to reduce clinical false positives and improve detector robustness.
+The goal is to generate high-value negative samples, synthetic background images that intentionally look like polyps, to reduce clinical false positives and improve detector robustness.
 
 
 ## Problem Statement
@@ -38,16 +43,17 @@ A modified DDPM is trained to learn only background patterns from colonoscopy im
 **2. Adversarial Guidance (DADA)**
 During image generation, adversarial gradients from a pre-trained detector (YOLO/DETR) are injected into the diffusion process.
 These gradients guide the synthetic image toward patterns that fool the detector, intentionally creating challenging false positives.
-**3. Local Inpainting for Realism**
 
+**3. Local Inpainting for Realism**
 Only a specific region of the image is modified, while the rest remains unchanged. This produces high-value, anatomically consistent false-positive samples.
 The generated images look realistic and polyp-like but are actually background artifacts. Training detectors with these samples significantly reduces the number of false positives.
+
 **Results**
 Across public and private datasets, the method improves F1-score by +2.6% to +2.7%, outperforming adversarial attacks and other inpainting baselines.
 
 This repository includes several research-level enhancements:
 **Region-Adaptive Perturbation α ** Instead of using the same adversarial factor (α) everywhere, the new version: Uses higher α in high-risk FP regions (folds, circular lumen), Uses lower α in smooth regions, Prevents over-perturbation and Increases biological plausibility
-**Enhanced BG-De Training Stability ** OneCycleLR
+**Enhanced BG-De Training Stability ** by using OneCycleLR learning rate scheduler.
   
 ### Project Documents
 - **Presentation:** [Enhanced DADA Model for Polyps Detection.pptx]
@@ -58,7 +64,7 @@ This repository includes several research-level enhancements:
 
 ### Reference Dataset
 - [Kvasir Dataset](https://datasets.simula.no/kvasir/)
-- Dataset: ETIS-Larib Polyp DB (https://service.tib.eu/ldmservice/dataset/etis-larib-polyp-db)
+- [ETIS-Larib Polyp DB Dataset] (https://service.tib.eu/ldmservice/dataset/etis-larib-polyp-db)
 
 
 ## Project Technicalities
@@ -71,7 +77,6 @@ This repository includes several research-level enhancements:
 ### Problem Statements
 - **Problem 1:** Achieving high-resolution and detailed images using conventional diffusion models remains challenging.
 - **Problem 2:** Existing models suffer from slow inference times during the image generation process.
-- **Problem 3:** There is limited capability in performing style transfer and generating diverse artistic variations.
 
 ### Loopholes or Research Areas
 - **Evaluation Metrics:** Lack of robust metrics to effectively assess the quality of generated images.
@@ -92,11 +97,13 @@ This repository provides an implementation of the enhanced stable diffusion mode
 
 ### Key Components
 - **`model.py`**: Contains the modified UNet architecture and other model components.
-- **`train.py`**: Script to handle the training process with configurable parameters.
-- **`utils.py`**: Utility functions for data processing, augmentation, and metric evaluations.
+- **`train.py`**: Script to handle the training and evaluation process 
+- **`Main.py`**: configurable parameters.
+- **`loss.py`**: loss functions
+- **`metrics.py`**:  metric evaluations.
 
 ## Model Workflow
-The workflow of the Enhanced Stable Diffusion model is designed to translate textual descriptions into high-quality artistic images through a multi-step diffusion process:
+The workflow of the Enhanced Stable Diffusion model is designed to generate  high-quality false-positive synthetic images.
 
 1. **Input:**
    - **Text Prompt:** The model takes a text prompt (e.g., "A surreal landscape with mountains and rivers") as the primary input.
@@ -108,7 +115,6 @@ The workflow of the Enhanced Stable Diffusion model is designed to translate tex
    - **Intermediate States:** At each step, intermediate latent representations are produced that increasingly capture the structure and details dictated by the text prompt.
 
 3. **Output:**
-   - **Decoding:** The final refined latent representation is passed through a decoder (often part of a Variational Autoencoder setup) to generate the final image.
    - **Generated Image:** The output is a synthesized image that visually represents the input text prompt, complete with artistic style and detail.
 
 ## How to Run the Code
