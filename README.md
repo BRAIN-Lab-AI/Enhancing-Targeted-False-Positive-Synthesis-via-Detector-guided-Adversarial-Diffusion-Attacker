@@ -1,9 +1,14 @@
 ![ViT](https://github.com/user-attachments/assets/73764837-a38b-46ce-a043-95bee2e81a65)# Targeted False Positive Synthesis via Detector-guided Adversarial Diffusion Attacker for Robust Polyp Detection
+
+
+
 ╔══════════════════════════════════════════════════════════════════════╗
 ║                     Enhanced DADA Framework (2025)                   ║
 ║      Detector-Guided Adversarial Diffusion for Polyp Detection       ║
 ║             High-Value False-Positive Synthesis Pipeline             ║
 ╚══════════════════════════════════════════════════════════════════════╝
+
+
 
 ## Project Metadata
 ### Authors
@@ -12,21 +17,19 @@
 - **Affiliations:** IAU and KFUPM 
 
 ## Introduction
-Deep polyp detectors often produce false positives due to confusing background structures such as colon folds, circular lumens, specular highlights, and light reflections. These background patterns frequently mimic polyps, deceiving even advanced models like YOLO, DETR, and transformer-based detectors.
+Traditional polyp detectors frequently produce false positives on complex colon backgrounds—such as fold textures, specular highlights, shadows, and circular lumen edges. These mistakes cause: Misleading clinical alerts, Increased cognitive load for gastroenterologists and Poor trust in AI tools
+Existing generative methods mostly synthesize positive examples (polyp images).
+However, medical detectors need challenging negative examples that look like polyps but are harmless background structures.
 
-This project presents an Enhanced DADA Framework, extending the original: **Detector-Guided Adversarial Diffusion Attacker (DADA)**,
-with additional contributions such as: Region-adaptive perturbation α, Enhanced BG-De training stability and Better FP synthesis quality
-
-The goal is to generate high-value negative samples, synthetic background images that intentionally look like polyps, to reduce clinical false positives and improve detector robustness.
+The Enhanced DADA Framework is the first diffusion-based adversarial pipeline designed to synthesize realistic false-positive samples to improve real-world robustness of colonoscopy detectors.
 
 
 ## Problem Statement
-Polyp detectors suffer from high false-positive rates because the colon contains many polyp-like structures:
-Circular lumen openings, Vascular patterns, Specular highlights, Tissue folds and Reflections & lighting artifacts
-This leads to: Unnecessary alarms, Distracted clinicians, Poor AI trustworthiness and Reduced F1-score in real deployment
+Colonoscopy detectors often mistake normal background artifacts for polyps due to: Specular highlights, Circular lumen edges, Wrinkles/folds, Unusual lighting and Texture similarity
 
-Existing synthetic approaches generate positive samples, but do not create realistic false positives.
-This work introduces a solution: high-value false positive synthesis.
+These false positives degrade clinical performance.
+The problem:
+How can we synthesize realistic background artifacts that intentionally resemble polyps to reduce false positives?
 
 ## Application Area and Project Domain
 **Application Area:** Medical imaging, Polyp detection, Robust deep learning, Adversarial augmentation
@@ -52,8 +55,9 @@ The generated images look realistic and polyp-like but are actually background a
 Across public and private datasets, the method improves F1-score by +2.6% to +2.7%, outperforming adversarial attacks and other inpainting baselines.
 
 This repository includes several research-level enhancements:
-**Region-Adaptive Perturbation α ** Instead of using the same adversarial factor (α) everywhere, the new version: Uses higher α in high-risk FP regions (folds, circular lumen), Uses lower α in smooth regions, Prevents over-perturbation and Increases biological plausibility
-**Enhanced BG-De Training Stability ** by using OneCycleLR learning rate scheduler.
+**Region-Adaptive loss function**
+**Region-Adaptive Perturbation α** Instead of using the same adversarial factor (α) everywhere, the new version: Uses higher α in high-risk FP regions (folds, circular lumen), Uses lower α in smooth regions, Prevents over-perturbation and Increases biological plausibility
+**Enhanced BG-De Training Stability** by using OneCycleLR learning rate scheduler.
   
 ### Project Documents
 - **Presentation:** [Enhanced DADA Model for Polyps Detection.pptx]
@@ -106,16 +110,20 @@ This repository provides an implementation of the enhanced stable diffusion mode
 The workflow of the Enhanced Stable Diffusion model is designed to generate  high-quality false-positive synthetic images.
 
 1. **Input:**
-   - **Text Prompt:** The model takes a text prompt (e.g., "A surreal landscape with mountains and rivers") as the primary input.
-   - **Tokenization:** The text prompt is tokenized and processed through a text encoder (such as a CLIP model) to obtain meaningful embeddings.
-   - **Latent Noise:** A random latent noise vector is generated to initialize the diffusion process, which is then conditioned on the text embeddings.
+   - Base Image: A real colonoscopy frame.
+   - Mask: The target region to inpaint (simulating a false positive).
+   - Noise Tensor: Random noise initiating the diffusion trajectory.
 
 2. **Diffusion Process:**
-   - **Iterative Refinement:** The conditioned latent vector is fed into a modified UNet architecture. The model iteratively refines this vector by reversing a diffusion process, gradually reducing noise while preserving the text-conditioned features.
-   - **Intermediate States:** At each step, intermediate latent representations are produced that increasingly capture the structure and details dictated by the text prompt.
+   - The UNet-based DDPM performs iterative denoising. At each step:
+   - YOLO provides adversarial gradients → pushes the sample toward false-positive features.
+   - Background VGG perceptual + style loss keeps anatomical realism.
+   - Region-adaptive α modifies attack strength per region.
 
 3. **Output:**
-   - **Generated Image:** The output is a synthesized image that visually represents the input text prompt, complete with artistic style and detail.
+   - A final synthetic false-positive image
+   - Realistic background, polyp-like artifact
+   - Used to augment polyp detection datasets
 
 ## How to Run the Code
 
