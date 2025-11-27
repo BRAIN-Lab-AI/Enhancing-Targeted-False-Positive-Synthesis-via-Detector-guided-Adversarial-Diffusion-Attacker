@@ -50,8 +50,8 @@ This repository includes several research-level enhancements:
 **Enhanced BG-De Training Stability ** OneCycleLR
   
 ### Project Documents
-- **Presentation:** [Project Presentation](/presentation.pptx)
-- **Report:** [Project Report](/report.pdf)
+- **Presentation:** [Enhanced DADA Model for Polyps Detection.pptx]
+- **Report:** [Enhanced DADA Model.pdf]
 
 ### Reference Paper
 - [Targeted False Positive Synthesis via Detector-guided Adversarial Diffusion Attacker for Robust Polyp Detection](https://arxiv.org/abs/2506.18134)
