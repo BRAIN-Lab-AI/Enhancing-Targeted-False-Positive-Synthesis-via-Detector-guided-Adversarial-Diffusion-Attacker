@@ -67,8 +67,6 @@ This repository includes several research-level enhancements:
 - **Diffusion Model:** A generative model that progressively transforms random noise into coherent data.
 - **UNet Architecture:** A neural network with an encoder-decoder structure featuring skip connections for better feature preservation.
 - **Perceptual Loss:** A loss function that measures high-level differences between images, emphasizing perceptual similarity.
-- **Noise Vector:** A randomly generated vector used to initialize the diffusion process in generative models.
-- **Iterative Refinement:** The process of gradually improving the quality of generated data through multiple steps.
 
 ### Problem Statements
 - **Problem 1:** Achieving high-resolution and detailed images using conventional diffusion models remains challenging.
@@ -117,8 +115,8 @@ The workflow of the Enhanced Stable Diffusion model is designed to translate tex
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/yourusername/enhanced-stable-diffusion.git
-    cd enhanced-stable-diffusion
+    git clone https://github.com/BRAIN-Lab-AI/Enhancing-Targeted-False-Positive-Synthesis-via-Detector-guided-Adversarial-Diffusion-Attacker.git
+    cd Enhancing-Targeted-False-Positive-Synthesis-via-Detector-guided-Adversarial-Diffusion-Attacker.git
     ```
 
 2. **Set Up the Environment:**
@@ -128,20 +126,42 @@ The workflow of the Enhanced Stable Diffusion model is designed to translate tex
     source venv/bin/activate  # On Windows use: venv\Scripts\activate
     pip install -r requirements.txt
     ```
+**Data synthesis**
+We provide well-trained BG-De weights based on the public Kvasir dataset, which can be downloaded from this [link](https://drive.google.com/file/d/18_8oLJduhYCx7lbAsfmh6HbS4ZEkQY9C/view), . Please place the weights in the BG-De_model folder.
 
-3. **Train the Model:**
-    Configure the training parameters in the provided configuration file and run:
-    ```bash
-    python train.py --config configs/train_config.yaml
+Additionally, we also offer YOLOv5l weights trained on the public Kvasir dataset, which can be downloaded from this [link](https://drive.google.com/file/d/1hfs5trwjaZXrCVflEZstlHSiioMQJEp4/view). Please place the weights in the Detection_model folder.
+
+After completing the above steps, you can generate negative samples by simply running Main.py:
+```bash
+    python Main.py
     ```
 
-4. **Generate Images:**
-    Once training is complete, use the inference script to generate images.
+
+3. **Train the Model:**
+
+** Prepare the datasets for BG-De.**
+Please place the dataset you want to train in the path ./datasets and ensure that the size of the images and masks is 256. The path structure should be as follows:
+  DADA
+  ├── datasets
+  │   ├── images
+  │   ├── masks
+
+Train your own BG-De.
+Please set the "state" parameter of modelConfig in Main.py to "train", and set parameters such as batch_size according to actual conditions.
+
     ```bash
-    python inference.py --checkpoint path/to/checkpoint.pt --input "A surreal landscape with mountains and rivers"
+    python Main.py
+    ```
+Place the weights in the BG-De_model folder.
+4. **Testing:**
+
+Before running the tests, ensure an object detection model is ready. For this project, we utilize the YOLOv5l architecture. Place the weights in the Detection_model folder and set the "state" parameter of modelConfig in Main.py to "eval".
+
+    ```bash
+    python Main.py 
     ```
 
 ## Acknowledgments
 - **Open-Source Communities:** Thanks to the contributors of PyTorch, Hugging Face, and other libraries for their amazing work.
-- **Individuals:** Special thanks to bla, bla, bla for the amazing team effort, invaluable guidance and support throughout this project.
-- **Resource Providers:** Gratitude to ABC-organization for providing the computational resources necessary for this project.
+- **Individuals:** Special thanks to Dr. Muzammil Behzadand for this experience, and I acknowledge the outstanding open-source contributions from [DADA](https://github.com/Huster-Hq/DADA/tree/main), [DDPM](https://github.com/zoubohao/DenoisingDiffusionProbabilityModel-ddpm-), [YOLOv5](https://github.com/ultralytics/yolov5), and [DETR](https://github.com/facebookresearch/detr).
+
