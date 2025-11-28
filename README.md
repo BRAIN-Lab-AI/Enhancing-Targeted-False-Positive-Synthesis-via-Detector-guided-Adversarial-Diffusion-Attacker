@@ -68,7 +68,7 @@ This repository includes several research-level enhancements:
 
 ### Reference Dataset
 - [Kvasir Dataset](https://datasets.simula.no/kvasir/)
-- [ETIS-Larib Polyp DB Dataset] (https://service.tib.eu/ldmservice/dataset/etis-larib-polyp-db)
+- [[ETIS-Larib Polyp DB Dataset](https://service.tib.eu/ldmservice/dataset/etis-larib-polyp-db)] 
 
 
 ## Project Technicalities
