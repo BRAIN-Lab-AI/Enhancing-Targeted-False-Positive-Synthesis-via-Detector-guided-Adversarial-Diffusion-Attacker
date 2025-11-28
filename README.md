@@ -60,7 +60,7 @@ This repository includes several research-level enhancements:
 **Enhanced BG-De Training Stability** by using OneCycleLR learning rate scheduler.
   
 ### Project Documents
-- **Presentation:** [Enhanced DADA Model for Polyps Detection.pptx] https://github.com/BRAIN-Lab-AI/Enhancing-Targeted-False-Positive-Synthesis-via-Detector-guided-Adversarial-Diffusion-Attacker/blob/main/Enhanced%20DADA%20Model%20for%20Polyps%20Detection.pptx
+- **Presentation:** [[Enhanced DADA Model for Polyps Detection.pptx](https://github.com/BRAIN-Lab-AI/Enhancing-Targeted-False-Positive-Synthesis-via-Detector-guided-Adversarial-Diffusion-Attacker/blob/main/Enhanced%20DADA%20Model%20for%20Polyps%20Detection.pptx)] 
 - **Report:** [Enhanced DADA Model.pdf]
 
 ### Reference Paper
