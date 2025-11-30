@@ -17,7 +17,7 @@
 - **Affiliations:** IAU and KFUPM 
 
 ## Introduction
-Traditional polyp detectors frequently produce false positives on complex colon backgrounds—such as fold textures, specular highlights, shadows, and circular lumen edges. These mistakes cause: Misleading clinical alerts, Increased cognitive load for gastroenterologists and Poor trust in AI tools
+Traditional polyp detectors frequently produce false positives on complex colon backgrounds such as fold textures, specular highlights, shadows, and circular lumen edges. These mistakes cause: Misleading clinical alerts, Increased cognitive load for gastroenterologists and Poor trust in AI tools
 Existing generative methods mostly synthesize positive examples (polyp images).
 However, medical detectors need challenging negative examples that look like polyps but are harmless background structures.
 
@@ -58,7 +58,23 @@ This repository includes several research-level enhancements:
 **Region-Adaptive loss function**
 **Region-Adaptive Perturbation α** Instead of using the same adversarial factor (α) everywhere, the new version: Uses higher α in high-risk FP regions (folds, circular lumen), Uses lower α in smooth regions, Prevents over-perturbation and Increases biological plausibility
 **Enhanced BG-De Training Stability** by using OneCycleLR learning rate scheduler.
-  
+
+
+This code defines DADALoss, an enhanced loss function used inside the DADA adversarial diffusion framework for polyp detection.
+The loss combines:
+
+**1- YOLO-like detection losses**
+- Box regression loss
+- Objectness loss
+- Classification loss
+
+**2- DADA-specific adversarial losses**
+- Anatomical region–aware loss
+- False-positive generation loss
+- Region-adaptive perturbation control (adaptive α)
+
+This allows the model to generate hard, anatomically realistic false-positive samples for training detectors.
+
 ### Project Documents
 - **Presentation:** [[Enhanced DADA Model for Polyps Detection.pptx](https://github.com/BRAIN-Lab-AI/Enhancing-Targeted-False-Positive-Synthesis-via-Detector-guided-Adversarial-Diffusion-Attacker/blob/main/Enhanced%20DADA%20Model%20for%20Polyps%20Detection.pptx)] 
 - **Report:** [Enhanced DADA Model.pdf]
@@ -77,6 +93,8 @@ This repository includes several research-level enhancements:
 - **Diffusion Model:** A generative model that progressively transforms random noise into coherent data.
 - **UNet Architecture:** A neural network with an encoder-decoder structure featuring skip connections for better feature preservation.
 - **Perceptual Loss:** A loss function that measures high-level differences between images, emphasizing perceptual similarity.
+- **Region-Adaptive α:** Automatically adjusts perturbation strength depending on anatomical structure.
+- **OneCycleLR:** This “cycle” happens within one full training run, not multiple epochs.--> Starts with a low learning rate --> Increases it gradually to a maximum value --> Then decreases it back to a very small value
 
 ### Problem Statements
 - **Problem 1:** Achieving high-resolution and detailed images using conventional diffusion models remains challenging.
@@ -158,10 +176,12 @@ After completing the above steps, you can generate negative samples by simply ru
 
 ** Prepare the datasets for BG-De.**
 Please place the dataset you want to train in the path ./datasets and ensure that the size of the images and masks is 256. The path structure should be as follows:
+
   DADA
   ├── datasets
   │   ├── images
   │   ├── masks
+
 
 Train your own BG-De.
 Please set the "state" parameter of modelConfig in Main.py to "train", and set parameters such as batch_size according to actual conditions.
